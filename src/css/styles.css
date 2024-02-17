@@ -163,6 +163,7 @@ input:active {
   opacity: 0;
 }
 
-.btn-load {
+.btn-loading {
   margin: 0 auto;
+  margin-top: 16px;
 }

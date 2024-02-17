@@ -6,7 +6,7 @@ import 'izitoast/dist/css/iziToast.min.css';
 import 'simplelightbox/dist/simple-lightbox.min.css';
 
 import { fetchData } from './js/pixabay-api';
-import { imgTemplate } from './js/render-functions';
+import { imgsTemplate } from './js/render-functions';
 
 const refs = {
   formEl: document.querySelector('form'),
@@ -15,6 +15,7 @@ const refs = {
   loaderEl: document.querySelector('.loader'),
   btnLoad: document.querySelector('.btn-load'),
 };
+hideLoadBtn();
 
 let query;
 let page;
@@ -37,7 +38,9 @@ async function onFormSubmit(e) {
   try {
     const data = await fetchData(query, page);
     if (data.totalHits === 0) {
-      showError("We're sorry, but you've reached the end of search results.");
+      showError(
+        'Sorry, there are no images matching your search query. Please try again!'
+      );
     }
     maxPage = Math.ceil(data.totalHits / 15);
     refs.listEl.innerHTML = '';
@@ -68,8 +71,8 @@ async function onLoadMoreClick() {
   });
 }
 
-function renderImgs() {
-  const markup = imgTemplate();
+function renderImgs(hits) {
+  const markup = imgsTemplate(hits);
   refs.listEl.insertAdjacentHTML('beforeend', markup);
 }
 
@@ -108,6 +111,7 @@ function hideLoadBtn() {
 function checkBtnVisibleStatus() {
   if (page >= maxPage) {
     hideLoadBtn();
+    showError("We're sorry, but you've reached the end of search results.");
   } else {
     showLoadBtn();
   }

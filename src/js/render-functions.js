@@ -12,6 +12,7 @@ function imgTemplate(hit) {
           <img class="item-img" src="${webformatURL}" alt="${tags}" ></a><div class="container"><p><b>Likes: </b><br>${likes}</p><p><b>Views: </b><br>${views}</p><p><b>Comments: </b><br>${comments}</p><p><b>Downloads: </b><br>${downloads}</p>
           </div></li>`;
 }
-export function imgTemplate(hits) {
+
+export function imgsTemplate(hits) {
   return hits.map(imgTemplate).join('');
 }
