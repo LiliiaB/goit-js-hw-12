@@ -81,7 +81,7 @@ body {
 button {
   border-radius: 8px;
   padding: 8px 16px;
-  width: 91px;
+  width: 125px;
   height: 40px;
   border: none;
   background: #4e75ff;
@@ -156,4 +156,13 @@ input:active {
   text-align: center;
   padding: 8px;
   justify-content: center;
+}
+
+.hidden {
+  display: none;
+  opacity: 0;
+}
+
+.btn-load {
+  margin: 0 auto;
 }

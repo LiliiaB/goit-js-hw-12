@@ -1,26 +1,17 @@
-import SimpleLightbox from 'simplelightbox';
-
-export const refs = {
-  formEl: document.querySelector('form'),
-  inputEl: document.querySelector('input'),
-  listEl: document.querySelector('ul'),
-  loaderEl: document.querySelector('.loader'),
-};
-
-export function showLoader() {
-  refs.loaderEl.style.display = 'flex';
+function imgTemplate(hit) {
+  const {
+    largeImageURL,
+    webformatURL,
+    tags,
+    likes,
+    views,
+    comments,
+    downloads,
+  } = hit;
+  return `<li class="list-item"><a href="${largeImageURL}">
+          <img class="item-img" src="${webformatURL}" alt="${tags}" ></a><div class="container"><p><b>Likes: </b><br>${likes}</p><p><b>Views: </b><br>${views}</p><p><b>Comments: </b><br>${comments}</p><p><b>Downloads: </b><br>${downloads}</p>
+          </div></li>`;
 }
-export function hideLoader() {
-  refs.loaderEl.style.display = 'none';
-}
-
-export function showLightBox() {
-  const lightbox = new SimpleLightbox('.gallery a', {
-    captions: true,
-    captionSelector: 'img',
-    captionPosition: 'bottom',
-    captionsData: 'alt',
-  });
-  lightbox.on('show.simplelightbox');
-  lightbox.refresh();
+export function imgTemplate(hits) {
+  return hits.map(imgTemplate).join('');
 }
